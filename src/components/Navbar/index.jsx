@@ -9,34 +9,35 @@ import {
   useColorModeValue,
   Stack,
   Image,
-  useColorMode
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon,} from '@chakra-ui/icons';
-import logoAda from '../../assets/adasvg.svg'
+  useColorMode,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import logoAda from "../../assets/adasvg.svg";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
-import Modal  from "../Drawer";
+import Modal from "../Drawer";
 
-const Links = ['Inicio', 'Productos', 'Contacto'];
+const Links = ["Inicio", "Productos", "Contacto"];
 
 const NavLink = ({ children }) => (
   <Link
     m="2"
     px={2}
     py={1}
-    fontSize='18px'
-    rounded={'md'}
+    fontSize="18px"
+    rounded={"md"}
     _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
+      textDecoration: "none",
+      bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    href={'#'}>
+    href={"#"}
+  >
     {children}
   </Link>
 );
 
-const Navbar = ({cart, emptyCart, deleteProduct, product}) => {
+const Navbar = ({ cart, emptyCart, deleteProduct }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <>
@@ -46,6 +47,7 @@ const Navbar = ({cart, emptyCart, deleteProduct, product}) => {
         position="fixed"
         zIndex="2"
         w="100%"
+        boxShadow="md"
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
@@ -55,9 +57,9 @@ const Navbar = ({cart, emptyCart, deleteProduct, product}) => {
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} alignItems={"center"}>
+          <HStack spacing={2} alignItems={"center"}>
             <Image
-              boxSize="35px"
+              boxSize="22px"
               objectFit="contain"
               src={logoAda}
               alt="logo ada"
@@ -71,13 +73,11 @@ const Navbar = ({cart, emptyCart, deleteProduct, product}) => {
               display={{ base: "none", md: "flex" }}
             ></HStack>
           </HStack>
-
           <Flex justify="center" display={{ base: "none", md: "flex" }}>
             {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))}
           </Flex>
-
           <Flex justify="center" align="center">
             <Button onClick={toggleColorMode} mr="10px">
               {colorMode === "light" ? (
@@ -105,6 +105,6 @@ const Navbar = ({cart, emptyCart, deleteProduct, product}) => {
       </Box>
     </>
   );
-}
+};
 
-export default Navbar
+export default Navbar;
